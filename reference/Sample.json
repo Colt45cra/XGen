@@ -1,0 +1,51 @@
+{
+  "name": "You Are ATM #1",
+  "description": "You Are ATM.",
+  "external_url": "",
+  "image": "1.png",
+  "collection": {
+    "name": "You Are ATM",
+    "description": "The face of a movement. The fuel for what's next. 'You Are ATM' is the official NFT collection commemorating a turning point in the $ATM journey — the moment our community became the CTO.  Backed by Ripple recognition and powered by the people, this collection marks the rise of a decentralized force driving the future of XRPL culture. Each NFT will support the ATM liquidity pool, CTO efforts and permanently stamps your role in the story — not as a bystander, but as the engine. This is a signal. A nod from Brad Garlinghouse. A shift in power. A new era. Own your piece. Be the protocol. You Are ALL THE MONEY!"
+  },
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Gradient #7"
+    },
+    {
+      "trait_type": "Back",
+      "value": "Jetpack"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Limelight Green"
+    },
+    {
+      "trait_type": "Hand",
+      "value": "Out"
+    },
+    {
+      "trait_type": "ATM",
+      "value": "Lime"
+    },
+    {
+      "trait_type": "Face",
+      "value": "WuUt Emote Black"
+    },
+    {
+      "trait_type": "Floating",
+      "value": "ATM Gold Bar"
+    }
+  ],
+  "properties": {
+    "files": [
+      {
+        "uri": "1.png",
+        "type": "image/png"
+      }
+    ],
+    "category": "image",
+    "creators": "ATM"
+  },
+  "compiler": "ATM"
+}

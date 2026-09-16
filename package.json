@@ -1,0 +1,1 @@
+{"name":"xgen","version":"1.1.0","private":true,"type":"module","scripts":{"build":"node scripts/build.mjs","test":"node --test","preview":"python3 -m http.server 4173 --directory dist"},"engines":{"node":">=20"}}
