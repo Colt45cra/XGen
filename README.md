@@ -1,4 +1,4 @@
-# XGen recovery release 1.2.0
+# XGen recovery release 1.2.1
 
 Recovered from the owner's public Vercel deployment dpl_FoeW4d3Pu5QDjjE3nv7wApyreshG. Original TypeScript source was not available through the connected tools. `recovered/` preserves the original production JavaScript; this is a recovery release, not a reconstruction of original source files.
 

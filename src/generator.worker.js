@@ -1,4 +1,4 @@
-import { buildAppearancePlan } from './generation.mjs';
+import { buildAppearancePlan } from '../src/generation.mjs';
 
 let cancelled = false;
 const DB_NAME = 'xgen';
