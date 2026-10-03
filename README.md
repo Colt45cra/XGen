@@ -31,3 +31,9 @@ Each layer has an appearance percentage from 0–100. XGen converts that percent
 Create a private repository named xgen under the owner's account, commit this directory excluding dist, and connect it to the existing Vercel project `prj_gQg4GAN1H4QEmPhlaPouO55udanJ` in team `team_HPzz2V3JlobWKcQFJiPLeVdb`. vercel.json defines the build. Do not upload credentials, .vercel, .env, or browser artwork.
 
 The full original source should replace the recovery bundle if later obtained. Keep metadata tests as the compatibility gate.
+
+## Minted artist process
+
+Use the existing collection wizard and select **Minted coloring collection** in Details. Artist and character names are required. Build layers and generate normally, then map the base, colorable traits and fixed effects at the publishing step. Minted’s server accepts only Xaman-approved publication requests from wallets holding the configured Approved Artist NFT. Metadata says **Minted is a product of ALL THE MONEY Labs**. Artists without a badge can still build and download a versioned Minted package.
+
+Direct publishing must be activated in Minted with server credentials, a storage project and badge issuer/taxon. See NFT-color’s `ARTIST_PUBLISHING.md`. Exported packages preserve original PNGs, stable IDs, draw order, trait weights, appearance and generated combinations. Existing standard NFT generation and sample-format metadata remain compatible.

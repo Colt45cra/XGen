@@ -1,6 +1,8 @@
 export function buildMetadata(details, token) {
   const image = details.imageBaseUrl ? `${details.imageBaseUrl.replace(/\/+$/, '')}/${token.index}.png` : `${token.index}.png`;
+  const brand=details.destination==='minted'?{publisher:'ALL THE MONEY Labs',product:'Minted',attribution:'Minted is a product of ALL THE MONEY Labs'}:{};
   return {
+    ...brand,
     name: `${details.name} #${token.index}`,
     description: details.description || '',
     external_url: details.externalUrl || '',
@@ -13,6 +15,7 @@ export function buildMetadata(details, token) {
 }
 export function validateDetails(d) {
  const errors = [];
+ if(d.destination==='minted'&&(!d.mintedArtist?.trim()||!d.mintedCharacter?.trim())) errors.push('Enter artist and character names for Minted.');
  if (!d.name?.trim()) errors.push('Enter a collection name.');
  if (!Number.isInteger(Number(d.supply)) || Number(d.supply)<1 || Number(d.supply)>10000) errors.push('Supply must be a whole number from 1 to 10,000.');
  for (const [key,label] of [['externalUrl','Website'],['imageBaseUrl','Image base URL']]) {
