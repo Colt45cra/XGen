@@ -1,6 +1,8 @@
+import {createMintedPublisher} from './minted-ui.mjs';
 import {buildMetadata,validateDetails} from './metadata.mjs';
-export function createUI(React, Wizard) {
+export function createUI(React, Wizard, readStorage, Zip, saveArchive) {
  const h=React.createElement;
+ const Publisher=createMintedPublisher(React,readStorage,Zip,saveArchive);
  function Details({details:d,onChange,onContinue}) {
   const [submitted,setSubmitted]=React.useState(false);
   const errors=validateDetails(d);
@@ -10,6 +12,8 @@ export function createUI(React, Wizard) {
   return h('section',null,
    h('div',{className:'page-heading'},h('p',{className:'eyebrow'},'01 / COLLECTION'),h('h1',null,'Make it yours.'),h('p',null,'Set the details that travel with every NFT.')),
    h('div',{className:'details-layout'},h('form',{className:'panel',onSubmit:e=>{e.preventDefault();setSubmitted(true);if(!errors.length)onContinue();}},
+    h('label',{className:'field'},h('span',null,'Publish collection for'),h('select',{value:d.destination||'nft',onChange:e=>set('destination',e.target.value)},h('option',{value:'nft'},'Standard NFT collection'),h('option',{value:'minted'},'Minted coloring collection'))),
+    d.destination==='minted'&&h('div',{className:'field-grid'},field('Artist name','mintedArtist',{required:true}),field('Character name','mintedCharacter',{required:true})),
     field('Collection name','name',{required:true,placeholder:'You Are ATM'}),
     field('NFT description','description',{multiline:true,placeholder:'A short description for each NFT.'}),
     field('Collection description','collectionDescription',{multiline:true,fallback:d.description||'',hint:'The collection story. Exported separately from the NFT description.'}),
@@ -23,8 +27,7 @@ export function createUI(React, Wizard) {
    h('aside',{className:'preview-panel'},h('div',{className:'preview-heading'},h('strong',null,'Metadata preview'),h('span',{className:'badge'},'Sample format')),h('p',null,'Token #1 · updates as you type'),h('pre',{'aria-label':'Metadata preview'},JSON.stringify(metadata,null,2)),h('p',{className:'preview-note'},'Preview traits are examples. Exports use the traits from each generated image.'))));
  }
  function App() {
-  return h('div',{className:'studio'},h('header',{className:'studio-header'},h('a',{className:'brand',href:'#'},'X',h('span',null,'Gen')),h('span',{className:'studio-label'},'COLLECTION STUDIO'),h('a',{href:'https://xgen-iota.vercel.app',target:'_blank',rel:'noreferrer',className:'legacy-link'},'Original release ↗')),
-   h('main',{className:'studio-main'},h(Wizard)),h('footer',{className:'studio-footer'},'All The Money Labs',h('span',null,'Artwork and progress stay in this browser.')));
+  return h('div',{className:'studio'},h('header',{className:'studio-header'},h('a',{className:'brand',href:'#'},'X',h('span',null,'Gen')),h('span',{className:'studio-label'},'COLLECTION STUDIO')),h('main',{className:'studio-main'},h(Wizard)),h('footer',{className:'studio-footer'},'ALL THE MONEY Labs',h('span',null,'Build collections for NFTs or Minted.')));
  }
- return {Details,App};
+ return {Details,App,Publisher};
 }
