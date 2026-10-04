@@ -1,8 +1,8 @@
 import {createMintedPublisher} from './minted-ui.mjs';
 import {buildMetadata,validateDetails} from './metadata.mjs';
-export function createUI(React, Wizard, readStorage) {
+export function createUI(React, Wizard, readStorage, Zip, saveArchive) {
  const h=React.createElement;
- const Publisher=createMintedPublisher(React,readStorage);
+ const Publisher=createMintedPublisher(React,readStorage,Zip,saveArchive);
  function Details({details:d,onChange,onContinue}) {
   const [submitted,setSubmitted]=React.useState(false);
   const errors=validateDetails(d);

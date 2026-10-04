@@ -5,7 +5,7 @@ const start=bundle.indexOf('function Cc(e,t){');const end=bundle.indexOf('var wc
 bundle=bundle.slice(0,start)+'function Cc(e,t){return buildMetadata(e,t)}'+bundle.slice(end);
 replaceOnce('(0,w.jsx)(N,{details:r,onChange:i,onContinue:v})','(0,w.jsx)(StudioDetails,{details:r,onChange:i,onContinue:v})');
 replaceOnce('(0,w.jsx)(Yc,{})','(0,w.jsx)(StudioApp,{})');
-replaceOnce('(0,S.createRoot)(document.getElementById(`root`))','const {Details:StudioDetails,App:StudioApp,Publisher:StudioPublisher}=createUI(x,zc,le);(0,S.createRoot)(document.getElementById(`root`))');
+replaceOnce('(0,S.createRoot)(document.getElementById(`root`))','const {Details:StudioDetails,App:StudioApp,Publisher:StudioPublisher}=createUI(x,zc,le,pc.default,Tc);(0,S.createRoot)(document.getElementById(`root`))');
 replaceOnce('var Lc=[`Details`,`Layers`,`Preview`,`Deploy`]','var Lc=[`Details`,`Artwork`,`Generate`,`Export & mint`]');
 replaceOnce('onClick:g,style:','onClick:()=>{if(confirm(`Start a new collection? This clears the current setup and layers in this browser.`))g()},style:');
 replaceOnce('Mint directly on Mainnet or Testnet. Real NFTokenMint transactions — sequences pre-calculated, no autofill in loop.','Mint on XRPL after uploading your exported assets and verifying your metadata references.');
@@ -16,6 +16,8 @@ replaceOnce('E=t.reduce((e,t)=>e*Math.max(t.traits.length,1),1)','E=possibleComb
 replaceOnce('let h=t.map(e=>({name:e.name,traits:e.traits.map(e=>({name:e.name,fileName:e.fileName,rarity:e.rarity,dataUrl:e.dataUrl}))}))','let h=t.map(e=>({name:e.name,appearance:e.appearance??100,traits:e.traits.map(e=>({name:e.name,fileName:e.fileName,rarity:e.rarity,dataUrl:e.dataUrl}))}))');
 replaceOnce('children:[e.traits.length,` trait`,e.traits.length===1?``:`s`]}','children:[e.traits.length,` trait`,e.traits.length===1?``:`s`,` · `,e.appearance??100,`%`]}');
 replaceOnce('function Ic(e){return e.map(e=>({id:e.id,name:e.name,traits:e.traits.map(e=>({id:e.id,fileName:e.fileName,name:e.name,rarity:e.rarity,dataUrl:e.dataUrl}))}))}','function Ic(e){return e.map(e=>({id:e.id,name:e.name,appearance:e.appearance??100,traits:e.traits.map(e=>({id:e.id,fileName:e.fileName,name:e.name,rarity:e.rarity,dataUrl:e.dataUrl}))}))}');
+// Defense in depth: the legacy direct mint action cannot handle a Minted collection.
+replaceOnce('C=async()=>{if(!a.trim()||t===0)return;', 'C=async()=>{if(e.destination===`minted`)throw Error(`Minted requires approved-wallet publication through the artist service.`);if(!a.trim()||t===0)return;');
 replaceOnce('t===4&&(0,w.jsx)(Dc,{details:r,layers:a,generated:s,generatedCount:l,onBack:y})','t===4&&(0,w.jsx)(r.destination===`minted`?StudioPublisher:Dc,{details:r,layers:a,generated:s,generatedCount:l,onBack:y})');
 await rm('dist',{recursive:true,force:true});await mkdir('dist/assets',{recursive:true});
 await cp('src','dist/src',{recursive:true});
